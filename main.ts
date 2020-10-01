@@ -311,6 +311,9 @@ let mySprite = sprites.create(mySprite_facing_right)
 controller.moveSprite(mySprite, 68, 0)
 let mySprite_facing_left = img`
     . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
     . . . e e e . . . e e e . . . .
     . . e e e e e . e e e e e . . .
     . . e e e e e e e e e e e . . .
@@ -323,10 +326,16 @@ let mySprite_facing_left = img`
     . . . . . . . e . . e . . . . .
     . . . . . . . e . . e . . . . .
     . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . .
 `
+let myspriteleft = sprites.create(mySprite_facing_left)
+game.onUpdate(function on_update() {
+    if (controller.dx() > 0) {
+        mySprite.setImage(mySprite_facing_right)
+    } else if (controller.dx() < 0) {
+        mySprite.setImage(mySprite_facing_left)
+    }
+    
+})
 mySprite.setPosition(5, 808)
 scene.cameraFollowSprite(mySprite)
 // jump

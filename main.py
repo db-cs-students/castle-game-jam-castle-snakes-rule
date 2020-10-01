@@ -316,6 +316,9 @@ controller.move_sprite(mySprite, 68, 0)
 
 mySprite_facing_left = img("""
     . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
     . . . e e e . . . e e e . . . .
     . . e e e e e . e e e e e . . .
     . . e e e e e e e e e e e . . .
@@ -328,10 +331,15 @@ mySprite_facing_left = img("""
     . . . . . . . e . . e . . . . .
     . . . . . . . e . . e . . . . .
     . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . .
 """)
+myspriteleft = sprites.create(mySprite_facing_left)
+
+def on_update():
+    if controller.dx() > 0:
+        mySprite.set_image(mySprite_facing_right)
+    elif controller.dx() < 0:
+        mySprite.set_image(mySprite_facing_left)    
+game.on_update(on_update)
 
 mySprite.set_position(5, 808)
 scene.camera_follow_sprite(mySprite)
