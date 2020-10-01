@@ -247,12 +247,12 @@ scene.set_tile_map(img("""
     ddddd..................................................................d..dddddd2222................................dffd
     ddddddddddd............dddd...............................................dddddd2222.................................ffd
     ddddddddddd............dddd...........ddd...........................d.....dddddd2222.................................ffd
-    ddddddddddd....ddddd...dddd......dddddddd........d...dd...ddd.............d222222222......................dddddddddddddd
-    ddddddddddd2222ddddd222dddd...ddddddddddd.......dd22222222dddd............d222222222................dddddddddddddddddddd
-    ddddddddddd2222ddddd222dddd222ddddddddddd......ddd22222222dddddddd........2d22222222ddddd...d...d...dddddddddddddddddddd
-    ddddddddddd2222ddddd222dddd222ddddddddddd....ddddd22222222dddddddd222222222d22222222ddddd22222222222dddddddddddddddddddd
-    ddddddddddd2222ddddd222dddd222ddddddddddd2222ddddd22222222dddddddd2222222222d2222222ddddd22222222222dddddddddddddddddddd
-    ddddddddddd2222ddddd222dddd222ddddddddddd2222ddddd22222222dddddddd2222222222d2222222ddddd22222222222dddddddddddddddddddd
+    ddddddddddd....ddddd...dddd......dddddddd........d...dd...ddd.............d222222222.......................ddddddddddddd
+    ddddddddddd2222ddddd222dddd...ddddddddddd.......dd22222222dddd............d222222222................dddd..2ddddddddddddd
+    ddddddddddd2222ddddd222dddd222ddddddddddd......ddd22222222dddddddd........2d22222222ddddd...d...d...dddd222ddddddddddddd
+    ddddddddddd2222ddddd222dddd222ddddddddddd....ddddd22222222dddddddd222222222d22222222ddddd22222222222dddd222ddddddddddddd
+    ddddddddddd2222ddddd222dddd222ddddddddddd2222ddddd22222222dddddddd2222222222d2222222ddddd22222222222dddd222ddddddddddddd
+    ddddddddddd2222ddddd222dddd222ddddddddddd2222ddddd22222222dddddddd2222222222d2222222ddddd22222222222dddd222ddddddddddddd
 """))   
 scene.set_tile(13, img("""
     b d d d d d d c b d d d d d d c
@@ -293,7 +293,7 @@ scene.set_tile(2, img("""
 """))
 
 #Main character
-mySprite = sprites.create(img("""
+mySprite_facing_right = img("""
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
@@ -310,9 +310,28 @@ mySprite = sprites.create(img("""
     . . . . . e . . e . . . . . . .
     . . . . . e . . e . . . . . . .
     . . . . . . . . . . . . . . . .
-"""),
-SpriteKind.player)
+""")
+mySprite = sprites.create(mySprite_facing_right)
 controller.move_sprite(mySprite, 68, 0)
+
+mySprite_facing_left = img("""
+    . . . . . . . . . . . . . . . .
+    . . . e e e . . . e e e . . . .
+    . . e e e e e . e e e e e . . .
+    . . e e e e e e e e e e e . . .
+    . . . . . . e e e e e e e . . .
+    . . . . . . e e e e e e e . . .
+    . . . . . . e e e e e e . . . .
+    . . . . . . e e e e e . . . . .
+    . . . . . . . e . . e . . . . .
+    . . . . . . . e . . e . . . . .
+    . . . . . . . e . . e . . . . .
+    . . . . . . . e . . e . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+""")
 
 mySprite.set_position(5, 808)
 scene.camera_follow_sprite(mySprite)

@@ -245,12 +245,12 @@ scene.setTileMap(img`
     ddddd..................................................................d..dddddd2222................................dffd
     ddddddddddd............dddd...............................................dddddd2222.................................ffd
     ddddddddddd............dddd...........ddd...........................d.....dddddd2222.................................ffd
-    ddddddddddd....ddddd...dddd......dddddddd........d...dd...ddd.............d222222222......................dddddddddddddd
-    ddddddddddd2222ddddd222dddd...ddddddddddd.......dd22222222dddd............d222222222................dddddddddddddddddddd
-    ddddddddddd2222ddddd222dddd222ddddddddddd......ddd22222222dddddddd........2d22222222ddddd...d...d...dddddddddddddddddddd
-    ddddddddddd2222ddddd222dddd222ddddddddddd....ddddd22222222dddddddd222222222d22222222ddddd22222222222dddddddddddddddddddd
-    ddddddddddd2222ddddd222dddd222ddddddddddd2222ddddd22222222dddddddd2222222222d2222222ddddd22222222222dddddddddddddddddddd
-    ddddddddddd2222ddddd222dddd222ddddddddddd2222ddddd22222222dddddddd2222222222d2222222ddddd22222222222dddddddddddddddddddd
+    ddddddddddd....ddddd...dddd......dddddddd........d...dd...ddd.............d222222222.......................ddddddddddddd
+    ddddddddddd2222ddddd222dddd...ddddddddddd.......dd22222222dddd............d222222222................dddd..2ddddddddddddd
+    ddddddddddd2222ddddd222dddd222ddddddddddd......ddd22222222dddddddd........2d22222222ddddd...d...d...dddd222ddddddddddddd
+    ddddddddddd2222ddddd222dddd222ddddddddddd....ddddd22222222dddddddd222222222d22222222ddddd22222222222dddd222ddddddddddddd
+    ddddddddddd2222ddddd222dddd222ddddddddddd2222ddddd22222222dddddddd2222222222d2222222ddddd22222222222dddd222ddddddddddddd
+    ddddddddddd2222ddddd222dddd222ddddddddddd2222ddddd22222222dddddddd2222222222d2222222ddddd22222222222dddd222ddddddddddddd
 `)
 scene.setTile(13, img`
     b d d d d d d c b d d d d d d c
@@ -289,7 +289,7 @@ scene.setTile(2, img`
     4 5 5 5 4 4 4 4 2 2 2 2 4 2 4 4
 `)
 // Main character
-let mySprite = sprites.create(img`
+let mySprite_facing_right = img`
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
@@ -306,8 +306,27 @@ let mySprite = sprites.create(img`
     . . . . . e . . e . . . . . . .
     . . . . . e . . e . . . . . . .
     . . . . . . . . . . . . . . . .
-`, SpriteKind.Player)
+`
+let mySprite = sprites.create(mySprite_facing_right)
 controller.moveSprite(mySprite, 68, 0)
+let mySprite_facing_left = img`
+    . . . . . . . . . . . . . . . .
+    . . . e e e . . . e e e . . . .
+    . . e e e e e . e e e e e . . .
+    . . e e e e e e e e e e e . . .
+    . . . . . . e e e e e e e . . .
+    . . . . . . e e e e e e e . . .
+    . . . . . . e e e e e e . . . .
+    . . . . . . e e e e e . . . . .
+    . . . . . . . e . . e . . . . .
+    . . . . . . . e . . e . . . . .
+    . . . . . . . e . . e . . . . .
+    . . . . . . . e . . e . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+`
 mySprite.setPosition(5, 808)
 scene.cameraFollowSprite(mySprite)
 // jump
