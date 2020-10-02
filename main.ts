@@ -271,22 +271,22 @@ scene.setTile(13, img`
     c c f c c c c f c c c c f c c c
 `, true)
 scene.setTile(2, img`
-    5 4 4 5 5 4 4 4 4 2 2 2 4 4 4 4
-    4 4 4 4 4 5 5 4 2 2 2 2 4 4 4 5
-    4 2 2 2 4 4 5 4 2 2 4 4 5 5 5 5
-    2 2 4 2 4 4 5 4 2 2 4 5 5 5 5 4
-    2 2 2 2 4 4 5 4 2 2 4 4 5 5 4 4
-    4 2 2 2 4 5 5 4 4 4 4 4 4 4 4 2
-    2 2 2 4 4 5 5 5 4 4 2 2 2 2 2 2
-    4 2 2 4 5 5 5 5 4 2 2 4 2 2 2 4
-    5 4 4 4 4 4 4 5 5 4 2 2 2 4 4 4
-    4 4 4 2 2 2 4 4 5 5 4 4 4 4 5 5
-    4 2 2 2 2 2 2 2 4 5 5 5 5 5 5 5
-    5 4 4 2 4 2 2 4 4 5 5 5 4 4 4 5
-    5 5 4 2 2 2 4 4 4 5 5 5 2 2 2 4
-    4 5 4 4 4 4 5 5 5 5 4 2 5 2 2 4
-    4 5 5 5 5 5 5 4 4 4 2 4 2 5 2 4
-    4 5 5 5 4 4 4 4 2 2 2 2 4 2 5 5
+    2 2 2 2 4 2 2 4 2 4 4 2 2 4 2 2
+    2 2 2 2 4 2 2 4 2 4 2 2 2 4 2 2
+    2 2 2 2 4 2 2 4 2 4 2 2 4 4 2 2
+    2 2 2 4 2 2 4 2 2 4 2 2 4 2 2 2
+    2 2 2 4 4 4 4 2 4 4 4 4 4 2 2 2
+    2 2 4 2 2 2 2 4 4 2 2 2 2 2 2 4
+    4 4 2 2 2 4 4 4 2 2 2 2 2 4 4 4
+    2 4 4 2 2 2 2 2 2 2 2 4 4 4 2 2
+    2 2 4 2 2 2 2 2 2 4 4 2 2 2 2 2
+    2 2 4 4 4 4 4 4 4 4 2 4 4 4 4 2
+    2 4 4 2 2 2 2 2 2 2 2 2 2 2 2 4
+    4 2 4 4 4 4 2 2 2 4 4 4 4 4 2 2
+    2 2 2 2 2 4 4 4 4 4 2 2 2 4 4 2
+    2 2 2 4 4 4 4 4 4 4 4 4 2 2 4 4
+    4 4 4 4 2 2 4 2 2 2 2 4 4 4 2 2
+    2 2 2 2 2 2 4 2 2 2 2 2 2 4 2 2
 `, true)
 scene.onHitTile(SpriteKind.Player, 2, function on_hit_tile(sprite: Sprite) {
     info.changeLifeBy(-1)
@@ -346,5 +346,22 @@ mySprite.setKind(SpriteKind.Player)
 // jump
 mySprite.ay = 120
 controller.A.onEvent(ControllerButtonEvent.Pressed, function on_jump() {
-    mySprite.vy = -90
+    mySprite.vy = -85
+})
+controller.moveSprite(mySprite, 65, 0)
+let double_jump = true
+controller.A.onEvent(ControllerButtonEvent.Pressed, function jump() {
+    
+    if (double_jump) {
+        mySprite.vy = -85
+        double_jump = mySprite.isHittingTile(CollisionDirection.Bottom)
+    }
+    
+})
+game.onUpdate(function on_update2() {
+    
+    if (mySprite.isHittingTile(CollisionDirection.Bottom)) {
+        double_jump = true
+    }
+    
 })

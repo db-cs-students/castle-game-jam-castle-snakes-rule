@@ -274,22 +274,22 @@ scene.set_tile(13, img("""
 """),
 True)
 scene.set_tile(2, img("""
-    5 4 4 5 5 4 4 4 4 2 2 2 4 4 4 4
-    4 4 4 4 4 5 5 4 2 2 2 2 4 4 4 5
-    4 2 2 2 4 4 5 4 2 2 4 4 5 5 5 5
-    2 2 4 2 4 4 5 4 2 2 4 5 5 5 5 4
-    2 2 2 2 4 4 5 4 2 2 4 4 5 5 4 4
-    4 2 2 2 4 5 5 4 4 4 4 4 4 4 4 2
-    2 2 2 4 4 5 5 5 4 4 2 2 2 2 2 2
-    4 2 2 4 5 5 5 5 4 2 2 4 2 2 2 4
-    5 4 4 4 4 4 4 5 5 4 2 2 2 4 4 4
-    4 4 4 2 2 2 4 4 5 5 4 4 4 4 5 5
-    4 2 2 2 2 2 2 2 4 5 5 5 5 5 5 5
-    5 4 4 2 4 2 2 4 4 5 5 5 4 4 4 5
-    5 5 4 2 2 2 4 4 4 5 5 5 2 2 2 4
-    4 5 4 4 4 4 5 5 5 5 4 2 5 2 2 4
-    4 5 5 5 5 5 5 4 4 4 2 4 2 5 2 4
-    4 5 5 5 4 4 4 4 2 2 2 2 4 2 5 5
+    2 2 2 2 4 2 2 4 2 4 4 2 2 4 2 2
+    2 2 2 2 4 2 2 4 2 4 2 2 2 4 2 2
+    2 2 2 2 4 2 2 4 2 4 2 2 4 4 2 2
+    2 2 2 4 2 2 4 2 2 4 2 2 4 2 2 2
+    2 2 2 4 4 4 4 2 4 4 4 4 4 2 2 2
+    2 2 4 2 2 2 2 4 4 2 2 2 2 2 2 4
+    4 4 2 2 2 4 4 4 2 2 2 2 2 4 4 4
+    2 4 4 2 2 2 2 2 2 2 2 4 4 4 2 2
+    2 2 4 2 2 2 2 2 2 4 4 2 2 2 2 2
+    2 2 4 4 4 4 4 4 4 4 2 4 4 4 4 2
+    2 4 4 2 2 2 2 2 2 2 2 2 2 2 2 4
+    4 2 4 4 4 4 2 2 2 4 4 4 4 4 2 2
+    2 2 2 2 2 4 4 4 4 4 2 2 2 4 4 2
+    2 2 2 4 4 4 4 4 4 4 4 4 2 2 4 4
+    4 4 4 4 2 2 4 2 2 2 2 4 4 4 2 2
+    2 2 2 2 2 2 4 2 2 2 2 2 2 4 2 2
 """),
 True)
 
@@ -354,7 +354,19 @@ mySprite.set_kind(SpriteKind.player)
 #jump
 mySprite.ay = 120
 def on_jump():
-    mySprite.vy = -90
+    mySprite.vy = -85
 controller.A.on_event(ControllerButtonEvent.PRESSED, on_jump)
 
-
+controller.move_sprite(mySprite, 65, 0)
+double_jump = True
+def jump():
+    global double_jump
+    if double_jump:
+        mySprite.vy = -85
+        double_jump = mySprite.is_hitting_tile(CollisionDirection.BOTTOM)
+controller.A.on_event(ControllerButtonEvent.PRESSED, jump)
+def on_update2():
+    global double_jump
+    if mySprite.is_hitting_tile(CollisionDirection.BOTTOM):
+        double_jump = True
+game.on_update(on_update2)       
