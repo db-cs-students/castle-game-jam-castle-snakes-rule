@@ -372,10 +372,10 @@ storyboard.registerScene("jumper", function jumper() {
     })
     game.onUpdate(function on_update3() {
         
-        if (my_sprite.isHittingTile(CollisionDirection.Bottom)) {
+        if (my_sprite.y == 0) {
             double_jump = true
         }
         
     })
 })
-storyboard.start("main")
+storyboard.start("jumper")

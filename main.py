@@ -377,9 +377,9 @@ def jumper():
     controller.A.on_event(ControllerButtonEvent.PRESSED, jump)
     def on_update3():
         global double_jump
-        if my_sprite.is_hitting_tile(CollisionDirection.BOTTOM):
-         double_jump = True
+        if my_sprite.y == 0:
+            double_jump = True
     game.on_update(on_update3)    
 storyboard.register_scene("jumper", jumper)
 
-storyboard.start("main")
+storyboard.start("jumper")
