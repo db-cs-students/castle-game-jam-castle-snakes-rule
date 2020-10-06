@@ -362,5 +362,20 @@ storyboard.registerScene("jumper", function jumper() {
     controller.A.onEvent(ControllerButtonEvent.Pressed, function on_jump() {
         my_sprite.vy = -80
     })
+    controller.A.onEvent(ControllerButtonEvent.Pressed, function jump() {
+        
+        if (double_jump) {
+            my_sprite.vy = -80
+        }
+        
+        double_jump = my_sprite.isHittingTile(CollisionDirection.Bottom)
+    })
+    game.onUpdate(function on_update3() {
+        
+        if (my_sprite.isHittingTile(CollisionDirection.Bottom)) {
+            double_jump = true
+        }
+        
+    })
 })
 storyboard.start("main")
