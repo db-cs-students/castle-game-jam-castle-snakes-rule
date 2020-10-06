@@ -363,7 +363,15 @@ def jumper():
         ................................
         ................................
     """))
+    my_sprite.set_position(15, 100)
+    my_sprite.ay = 120
+    my_sprite.set_flag(SpriteFlag.StayInScreen, True)
+    def on_jump():
+        my_sprite.vy = -80
+    controller.A.on_event(ControllerButtonEvent.PRESSED, on_jump)
     
+
+
 storyboard.register_scene("jumper", jumper)
 
 storyboard.start("main")

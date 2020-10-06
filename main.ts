@@ -356,5 +356,11 @@ storyboard.registerScene("jumper", function jumper() {
         ................................
         ................................
     `)
+    my_sprite.setPosition(15, 100)
+    my_sprite.ay = 120
+    my_sprite.setFlag(SpriteFlag.StayInScreen, true)
+    controller.A.onEvent(ControllerButtonEvent.Pressed, function on_jump() {
+        my_sprite.vy = -80
+    })
 })
 storyboard.start("main")
